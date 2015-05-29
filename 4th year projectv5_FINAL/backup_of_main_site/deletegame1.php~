@@ -1,0 +1,192 @@
+<?php require('header/header.php'); ?>
+<body>
+<!-- Main Menu -->
+    <div class="side-menu-container">
+        <ul class="nav navbar-nav">
+            
+            <li><a href="index.php"><span class="glyphicon glyphicon-menu-hamburger"></span>Home</a></li>
+            <li><a href="games_menu.php"><span class="glyphicon glyphicon-menu-hamburger"></span> Interactive Games </a></li>
+               <li><a href="rewards.php"><span class="glyphicon glyphicon-menu-hamburger"></span> Rewards </a></li>
+              <li><a href="whiteboard.php"><span class="glyphicon glyphicon-menu-hamburger"></span> Whiteboard </a></li>
+              <li><a href="lessons_menu.php"><span class="glyphicon glyphicon-menu-hamburger"></span> Lessons</a></li>
+               <li ><a href="about.php"><span class="glyphicon glyphicon-menu-hamburger"></span> About</a></li>
+            
+        
+
+            <!-- Dropdown-->
+            <li class="active" class="panel panel-default" id="dropdown">
+                <a data-toggle="collapse" href="#dropdown-lvl1">
+                       <span class="glyphicon glyphicon-menu-down"></span> Admin <span class="caret"></span>
+                </a>  
+<?php require('header/dropdown1.php'); ?>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="side-body">
+        <div id="header">
+
+           <h1> WordPlay!</h1>
+        </div>
+
+<style>
+.error {color: #FF0000;}
+</style>
+<h2 align="center">Delete Question from Spot the picture game</h2>  
+
+<?php
+//include 'ChromePhp.php';
+
+/*
+Attempt MySQL server connection. Assuming you are running MySQL
+server with default setting (user 'root' with no password)
+*/
+$link = mysqli_connect("localhost", "root", "secret", "wordplay_demo");
+
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+define ("MAX_SIZE","1000");  
+function getExtension($str) 
+{ 
+     $i = strrpos($str,"."); 
+     if (!$i) { return ""; } 
+     $l = strlen($str) - $i; 
+     $ext = substr($str,$i+1,$l); 
+     return $ext; 
+} 
+//$imageerr = "";
+//$copied;
+$imageerr= "";
+//$newname;
+
+$game1ID =  "";
+$game1IDerr = $missingerr = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
+
+   if (empty($_POST["game1ID"])) 
+   {
+     $game1IDerr = "A game1ID is required";
+   }
+   else 
+   {
+     $game1ID = mysqli_real_escape_string($link, $_POST['game1ID']);
+   }
+ 
+           
+  /// }
+       if ($game1ID != "")
+   // attempt insert query execution
+   {//ChromePhp::log('inserting!!!!!!!');
+  // delete * from tablename
+
+//ALTER TABLE tablename AUTO_INCREMENT = 1
+        //$sql .= "ALTER TABLE `gamequestions` AUTO_INCREMENT = '$sql2';)";
+        $sqlimage = "SELECT FROM  game1  WHERE game1ID='$game1ID';";
+        
+        $sql = "DELETE FROM  game1  WHERE game1ID='$game1ID';";
+        $sql .= "ALTER TABLE game1 DROP game1ID;";
+        $sql .= " ALTER TABLE game1 ADD game1ID INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;";
+        
+
+        //else echo '<h3>uploaded successfull!</h3>'; 
+  
+    //    mysqli_query($con, "insert into gamequestions (images) values('".$newname."')"); 
+       $result =  mysqli_multi_query($link, $sql);
+       if($result) 
+       {
+            do
+            {
+                // grab the result of the next query
+                if (($result = mysqli_store_result($link)) === false && mysqli_error($link) != '') 
+                {
+                    echo "Query failed: " . mysqli_error($link);
+                }
+            } 
+            while (mysqli_more_results($link) && mysqli_next_result($link)); // while there are more results
+        } 
+        else 
+        {
+            echo "First query failed..." . mysqli_error($link);
+        }
+    }
+    else
+    {
+       $missingerr = "Missing required inputs";
+    }
+
+// close connection
+mysqli_close($link);
+// Escape user inputs for security
+//$id = intval($_POST['firstname']);
+
+
+        
+  
+}
+
+?>
+<p><span class="error">* required field.</span></p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"  enctype="multipart/form-data" >
+    <p>
+        <label for="game1ID"> What row do you want deleted in the spot the picture game:</label>
+        <input type="text" name="game1ID" id="game1ID">
+         <span class="error">* <?php echo $game1IDerr ?></span>
+    </p>
+    <input type="submit" value="Delete Question">
+    <br>
+
+     <span class="error"><?php echo $missingerr ?></span>
+</form>
+
+
+
+          <!-- <pre> Resize the screen to view the left slide menu </pre> --->
+           
+          <!--  <h3> <b>Welcome to Wordplay!</b><h3>
+           
+           <p>Wordplay! is a web applicaiton that focuses on learning English through playing interactive games. Have Fun! </p>
+           
+           <h3> <b>Why WordPlay?</b><h3>
+               <p> Children today spend a lot of time on the playing computer video games whether it be mobile, tablet or on a computer. The inspiration for the project was to make an application to make learning fun for children.</p>
+            <h3><b>About The Site</b><h3>
+<p>Word Play, is a web application is a game based learning web application mainly aimed at children aged 9 and up. The system will be designed to make learning fun through playing games. </p> 
+
+<p>The primary focus of the application is mainly to teach a key aspect of English, which is helping children to build up their vocabulary, grammar, and spelling knowledge of the English language. </p> -->
+
+<!--- The system will contains different a number of games each game will be implemented differently to teach vocabulary, grammar and spelling rules of the English language. To go to the next section or level of the game, users will need to score a certain number of points to continue or have a good enough ratio. Once a user has completed a level with a good score, the user will get a sticker and can view that in the rewards section.<BR>
+
+Difficulty of the application has to be taken into consideration, the aim of the application is to have dynamic difficulty that is based on the users performance the game should get easier or harder also known as adaptive web design <BR>
+
+
+</p>--->
+
+<!--           <p><englishsite>
+<page>
+<title>Programming in Python!</title>
+<p1>Welcome to our Python tutorial! This tutorial is aimed at teaching the Python programming language to secondary school students. This tutorial will introduce you to the basics of Python.</p1>
+<title2>Why Python?</title2>
+<p2>Python is a widely-used programming language. It emphasizes writing readable code, so it is easier than other languages for beginners to understand and learn.</p2>
+<title3>About The Site</title3>
+<p3>The site is designed to teach you the fundamental concepts of Python. It starts with basic lessons, like printing to the screen, 
+and advances to writing your own Python functions. Students will have a good understanding of Python upon completion of the tutorial, 
+through a combination of lessons and exercises. The exercises are designed to test you on the material covered in the lessons.</p3> 
+</page>
+</englishsite></p>  --->
+          	
+		
+
+           
+			
+          
+        </div>
+    </div>
+</div>
+
+   
+
+</body>
+
+</html>

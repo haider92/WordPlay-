@@ -1,0 +1,59 @@
+  // this manages the sidebar when next is clicked increment the bar and fill it up...
+                                        var $pb = $('#v-center-basic .progress-bar');
+                                        if (limit == 1) {
+                                            $('#v-center-basic .progress-bar').attr('data-transitiongoal', 10).progressbar({
+                                                display_text: 'center'
+                                            });
+                                        }
+                                        if (limit == 2) {
+                                            $('#v-center-basic .progress-bar').attr('data-transitiongoal', 20).progressbar({
+                                                display_text: 'center'
+                                            });
+                                        }
+                                        if (limit == 3) {
+                                            $('#v-center-basic .progress-bar').attr('data-transitiongoal', 30).progressbar({
+                                                display_text: 'center'
+                                            });
+                                        }
+                                        if (limit == 4) {
+                                            $('#v-center-basic .progress-bar').attr('data-transitiongoal', 40).progressbar({
+                                                display_text: 'center'
+                                            });
+                                        }
+                                        if (limit == 5) {
+                                            $('#v-center-basic .progress-bar').attr('data-transitiongoal', 50).progressbar({
+                                                display_text: 'center'
+                                            });
+                                        }
+                                        if (limit == 6) {
+                                            $('#v-center-basic .progress-bar').attr('data-transitiongoal', 60).progressbar({
+                                                display_text: 'center'
+                                            });
+                                        }
+                                        if (limit == 7) {
+                                            $('#v-center-basic .progress-bar').attr('data-transitiongoal', 70).progressbar({
+                                                display_text: 'center'
+                                            });
+                                        }
+                                        if (limit == 8) {
+                                            $('#v-center-basic .progress-bar').attr('data-transitiongoal', 80).progressbar({
+                                                display_text: 'center'
+                                            });
+                                        }
+                                        if (limit == 9) {
+                                            $('#v-center-basic .progress-bar').attr('data-transitiongoal', 90).progressbar({
+                                                display_text: 'center'
+                                            });
+                                        }
+                                        if (limit == 10) {
+                                            $('#v-center-basic .progress-bar').attr('data-transitiongoal', 100).progressbar({
+                                                display_text: 'center'
+                                            });
+                                        }
+                                    });
+                                    $('#v-center-basic-reset').click(function() {
+                                        $('#v-center-basic .progress-bar').attr('data-transitiongoal', 0).progressbar({
+                                            display_text: 'center'
+                                        });
+                                    });
+                                });
