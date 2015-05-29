@@ -1,0 +1,10 @@
+<?php require('php/connection.php'); ?>
+<?php
+$var1 = $_POST['var1']; //  update score
+$var3 = $_POST['var3'];  //  timer
+  
+	$sql = "UPDATE scores set oldscore='$var1', Timer='$var3' where scoreID=1";
+	$result = mysqli_query($link, $sql);
+
+	
+?>

@@ -1,0 +1,21 @@
+<?php
+$conn=mysqli_connect("localhost","root","secret","wordplay_demo");
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+	
+
+	$var1 = $_POST['var1'];
+	$sql = "SELECT * FROM game2 where game2ID='$var1'";
+	$result = mysqli_query($conn, $sql);
+	$array_user = array();
+	while($data = mysqli_fetch_assoc($result)){
+       
+		$array_user[] = $data;
+	}
+    
+	echo json_encode($array_user);
+	
+?>
